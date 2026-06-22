@@ -608,37 +608,37 @@ typedef struct OptionList {
 } OptionList;
 
 static char* onoff_labels[] = {
-	"Off",
-	"On",
+	"关",
+	"开",
 	NULL
 };
 static char* scaling_labels[] = {
-	"Native",
-	"Aspect",
-	"Fullscreen",
-	"Cropped",
+	"原始",
+	"等比",
+	"全屏",
+	"裁剪",
 	NULL
 };
 static char* effect_labels[] = {
-	"None",
-	"Line",
-	"Grid",
+	"无",
+	"线条",
+	"网格",
 	NULL
 };
 static char* sharpness_labels[] = {
-	"Sharp",
-	"Crisp",
-	"Soft",
+	"锐利",
+	"清晰",
+	"柔和",
 	NULL
 };
 static char* tearing_labels[] = {
-	"Off",
-	"Lenient",
-	"Strict",
+	"关",
+	"宽松",
+	"严格",
 	NULL
 };
 static char* max_ff_labels[] = {
-	"None",
+	"无",
 	"2x",
 	"3x",
 	"4x",
@@ -786,17 +786,17 @@ static char* button_labels[] = {
 	NULL,
 };
 static char* overclock_labels[] = {
-	"Powersave",
-	"Normal",
-	"Performance",
-	NULL,
+	"省电",
+	"正常",
+	"高性能",
+	NULL
 };
 
 // TODO: this should be provided by the core
 static char* gamepad_labels[] = {
-	"Standard",
+	"标准",
 	"DualShock",
-	NULL,
+	NULL
 };
 static char* gamepad_values[] = {
 	"1",
@@ -812,10 +812,10 @@ enum {
 
 static inline char* getScreenScalingDesc(void) {
 	if (GFX_supportsOverscan()) {
-		return "Native uses integer scaling. Aspect uses core\nreported aspect ratio. Fullscreen has non-square\npixels. Cropped is integer scaled then cropped.";
+		return "原始使用整数缩放。等比使用核心\n报告的宽高比。全屏为非方形像素。\n裁剪为整数缩放后裁剪。";
 	}
 	else {
-		return "Native uses integer scaling.\nAspect uses core reported aspect ratio.\nFullscreen has non-square pixels.";
+		return "原始使用整数缩放。\n等比使用核心报告的宽高比。\n全屏为非方形像素。";
 	}
 }
 static inline int getScreenScalingCount(void) {
@@ -840,7 +840,7 @@ static struct Config {
 		.options = (Option[]){
 			[FE_OPT_SCALING] = {
 				.key	= "minarch_screen_scaling", 
-				.name	= "Screen Scaling",
+				.name	= "画面缩放",
 				.desc	= NULL, // will call getScreenScalingDesc()
 				.default_value = 1,
 				.value = 1,
@@ -850,8 +850,8 @@ static struct Config {
 			},
 			[FE_OPT_EFFECT] = {
 				.key	= "minarch_screen_effect",
-				.name	= "Screen Effect",
-				.desc	= "Grid simulates an LCD grid.\nLine simulates CRT scanlines.\nEffects usually look best at native scaling.",
+				.name	= "画面效果",
+				.desc	= "网格模拟 LCD 屏幕网格。\n线条模拟 CRT 扫描线。\n效果在原始缩放下通常最佳。",
 				.default_value = 0,
 				.value = 0,
 				.count = 3,
@@ -860,8 +860,8 @@ static struct Config {
 			},
 			[FE_OPT_SHARPNESS] = {
 				.key	= "minarch_screen_sharpness",
-				.name	= "Screen Sharpness",
-				.desc	= "Sharp uses nearest neighbor sampling.\nCrisp integer upscales before linear sampling.\nSoft uses linear sampling.",
+				.name	= "画面锐度",
+				.desc	= "锐利使用最近邻采样。\n清晰先整数放大再线性采样。\n柔和使用线性采样。",
 				.default_value = 2,
 				.value = 2,
 				.count = 3,
@@ -870,8 +870,8 @@ static struct Config {
 			},
 			[FE_OPT_TEARING] = {
 				.key	= "minarch_prevent_tearing",
-				.name	= "Prevent Tearing",
-				.desc	= "Wait for vsync before drawing the next frame.\nLenient only waits when within frame budget.\nStrict always waits.",
+				.name	= "防止撕裂",
+				.desc	= "绘制下一帧前等待垂直同步。\n宽松仅在帧预算内等待。\n严格始终等待。",
 				.default_value = VSYNC_LENIENT,
 				.value = VSYNC_LENIENT,
 				.count = 3,
@@ -880,8 +880,8 @@ static struct Config {
 			},
 			[FE_OPT_OVERCLOCK] = {
 				.key	= "minarch_cpu_speed",
-				.name	= "CPU Speed",
-				.desc	= "Over- or underclock the CPU to prioritize\npure performance or power savings.",
+				.name	= "CPU 速度",
+				.desc	= "超频或降频 CPU\n以优先考虑性能或省电。",
 				.default_value = 1,
 				.value = 1,
 				.count = 3,
@@ -890,8 +890,8 @@ static struct Config {
 			},
 			[FE_OPT_THREAD] = {
 				.key	= "minarch_thread_video",
-				.name	= "Prioritize Audio",
-				.desc	= "Can eliminate crackle but\nmay cause dropped frames.\nOnly turn on if necessary.",
+				.name	= "音频优先",
+				.desc	= "可消除爆音但\n可能导致掉帧。\n仅在必要时开启。",
 				.default_value = 0,
 				.value = 0,
 				.count = 2,
@@ -900,8 +900,8 @@ static struct Config {
 			},
 			[FE_OPT_DEBUG] = {
 				.key	= "minarch_debug_hud",
-				.name	= "Debug HUD",
-				.desc	= "Show frames per second, cpu load,\nresolution, and scaler information.",
+				.name	= "调试信息",
+				.desc	= "显示帧率、CPU 负载、\n分辨率和缩放器信息。",
 				.default_value = 0,
 				.value = 0,
 				.count = 2,
@@ -910,8 +910,8 @@ static struct Config {
 			},
 			[FE_OPT_MAXFF] = {
 				.key	= "minarch_max_ff_speed",
-				.name	= "Max FF Speed",
-				.desc	= "Fast forward will not exceed the\nselected speed (but may be less\ndepending on game and emulator).",
+				.name	= "最大快进速度",
+				.desc	= "快进不会超过\n选定速度（但实际速度\n取决于游戏和模拟器）。",
 				.default_value = 3, // 4x
 				.value = 3, // 4x
 				.count = 8,
@@ -929,14 +929,14 @@ static struct Config {
 	},
 	.controls = default_button_mapping,
 	.shortcuts = (ButtonMapping[]){
-		[SHORTCUT_SAVE_STATE]			= {"Save State",		-1, BTN_ID_NONE, 0},
-		[SHORTCUT_LOAD_STATE]			= {"Load State",		-1, BTN_ID_NONE, 0},
-		[SHORTCUT_RESET_GAME]			= {"Reset Game",		-1, BTN_ID_NONE, 0},
-		[SHORTCUT_SAVE_QUIT]			= {"Save & Quit",		-1, BTN_ID_NONE, 0},
-		[SHORTCUT_CYCLE_SCALE]			= {"Cycle Scaling",		-1, BTN_ID_NONE, 0},
-		[SHORTCUT_CYCLE_EFFECT]			= {"Cycle Effect",		-1, BTN_ID_NONE, 0},
-		[SHORTCUT_TOGGLE_FF]			= {"Toggle FF",			-1, BTN_ID_NONE, 0},
-		[SHORTCUT_HOLD_FF]				= {"Hold FF",			-1, BTN_ID_NONE, 0},
+		[SHORTCUT_SAVE_STATE]			= {"保存状态",		-1, BTN_ID_NONE, 0},
+		[SHORTCUT_LOAD_STATE]			= {"加载状态",		-1, BTN_ID_NONE, 0},
+		[SHORTCUT_RESET_GAME]			= {"重置游戏",		-1, BTN_ID_NONE, 0},
+		[SHORTCUT_SAVE_QUIT]			= {"保存并退出",		-1, BTN_ID_NONE, 0},
+		[SHORTCUT_CYCLE_SCALE]			= {"切换缩放",		-1, BTN_ID_NONE, 0},
+		[SHORTCUT_CYCLE_EFFECT]			= {"切换效果",		-1, BTN_ID_NONE, 0},
+		[SHORTCUT_TOGGLE_FF]			= {"切换快进",			-1, BTN_ID_NONE, 0},
+		[SHORTCUT_HOLD_FF]				= {"按住快进",			-1, BTN_ID_NONE, 0},
 		{NULL}
 	},
 };
@@ -3050,11 +3050,11 @@ static struct {
 	.preview_exists = 0,
 	
 	.items = {
-		[ITEM_CONT] = "Continue",
-		[ITEM_SAVE] = "Save",
-		[ITEM_LOAD] = "Load",
-		[ITEM_OPTS] = "Options",
-		[ITEM_QUIT] = "Quit",
+		[ITEM_CONT] = "继续",
+		[ITEM_SAVE] = "保存",
+		[ITEM_LOAD] = "加载",
+		[ITEM_OPTS] = "选项",
+		[ITEM_QUIT] = "退出",
 	}
 };
 
@@ -3070,7 +3070,7 @@ void Menu_init(void) {
 
 	sprintf(menu.slot_path, "%s/%s.txt", menu.minui_dir, game.name);
 	
-	if (simple_mode) menu.items[ITEM_OPTS] = "Reset";
+	if (simple_mode) menu.items[ITEM_OPTS] = "重置";
 	
 	if (game.m3u_path[0]) {
 		char* tmp;
@@ -3258,7 +3258,7 @@ static int OptionEmulator_optionChanged(MenuList* list, int i) {
 static int OptionEmulator_optionDetail(MenuList* list, int i) {
 	MenuItem* item = &list->items[i];
 	Option* option = OptionList_getOption(&config.core, item->key);
-	if (option->full) return Menu_message(option->full, (char*[]){ "B","BACK", NULL });
+	if (option->full) return Menu_message(option->full, (char*[]){ "B","返回", NULL });
 	else return MENU_CALLBACK_NOP;
 }
 static MenuList OptionEmulator_menu = {
@@ -3310,7 +3310,7 @@ static int OptionEmulator_openMenu(MenuList* list, int i) {
 		Menu_options(&OptionEmulator_menu);
 	}
 	else {
-		Menu_message("This core has no options.", (char*[]){ "B","BACK", NULL });
+		Menu_message("该核心没有选项。", (char*[]){ "B","返回", NULL });
 	}
 	
 	return MENU_CALLBACK_NOP;
@@ -3373,8 +3373,8 @@ static int OptionControls_optionChanged(MenuList* list, int i) {
 }
 static MenuList OptionControls_menu = {
 	.type = MENU_INPUT,
-	.desc = "Press A to set and X to clear."
-		"\nSupports single button and MENU+button." // TODO: not supported on nano because POWER doubles as MENU
+	.desc = "按 A 设置，按 X 清除。"
+		"\n支持单按钮和 MENU+按钮组合。"
 	,
 	.on_confirm = OptionControls_bind,
 	.on_change = OptionControls_unbind,
@@ -3391,8 +3391,8 @@ static int OptionControls_openMenu(MenuList* list, int i) {
 		
 		if (has_custom_controllers) {
 			MenuItem* item = &OptionControls_menu.items[k++];
-			item->name = "Controller";
-			item->desc = "Select the type of controller.";
+			item->name = "手柄";
+			item->desc = "选择手柄类型。";
 			item->value = gamepad_type;
 			item->values = gamepad_labels;
 			item->on_change = OptionControls_optionChanged;
@@ -3473,8 +3473,8 @@ static int OptionShortcuts_unbind(MenuList* list, int i) {
 }
 static MenuList OptionShortcuts_menu = {
 	.type = MENU_INPUT,
-	.desc = "Press A to set and X to clear." 
-		"\nSupports single button and MENU+button." // TODO: not supported on nano because POWER doubles as MENU
+	.desc = "按 A 设置，按 X 清除。"
+		"\n支持单按钮和 MENU+按钮组合。"
 	,
 	.on_confirm = OptionShortcuts_bind,
 	.on_change = OptionShortcuts_unbind,
@@ -3482,9 +3482,9 @@ static MenuList OptionShortcuts_menu = {
 };
 static char* getSaveDesc(void) {
 	switch (config.loaded) {
-		case CONFIG_NONE:		return "Using defaults."; break;
-		case CONFIG_CONSOLE:	return "Using console config."; break;
-		case CONFIG_GAME:		return "Using game config."; break;
+		case CONFIG_NONE:		return "使用默认设置。"; break;
+		case CONFIG_CONSOLE:	return "使用本机配置。"; break;
+		case CONFIG_GAME:		return "使用游戏配置。"; break;
 	}
 	return NULL;
 }
@@ -3522,22 +3522,22 @@ static int OptionSaveChanges_onConfirm(MenuList* list, int i) {
 	switch (i) {
 		case 0: {
 			Config_write(CONFIG_WRITE_ALL);
-			message = "Saved for console.";
+			message = "已保存为本机设置。";
 			break;
 		}
 		case 1: {
 			Config_write(CONFIG_WRITE_GAME);
-			message = "Saved for game.";
+			message = "已保存为游戏设置。";
 			break;
 		}
 		default: {
 			Config_restore();
-			if (config.loaded) message = "Restored console defaults.";
-			else message = "Restored defaults.";
+			if (config.loaded) message = "已恢复本机默认设置。";
+			else message = "已恢复默认设置。";
 			break;
 		}
 	}
-	Menu_message(message, (char*[]){ "A","OKAY", NULL });
+	Menu_message(message, (char*[]){ "A","确定", NULL });
 	OptionSaveChanges_updateDesc();
 	return MENU_CALLBACK_EXIT;
 }
@@ -3545,9 +3545,9 @@ static MenuList OptionSaveChanges_menu = {
 	.type = MENU_LIST,
 	.on_confirm = OptionSaveChanges_onConfirm,
 	.items = (MenuItem[]){
-		{"Save for console"},
-		{"Save for game"},
-		{"Restore defaults"},
+		{"保存为本机设置"},
+		{"保存为游戏设置"},
+		{"恢复默认"},
 		{NULL},
 	}
 };
@@ -3566,11 +3566,11 @@ static int OptionQuicksave_onConfirm(MenuList* list, int i) {
 static MenuList options_menu = {
 	.type = MENU_LIST,
 	.items = (MenuItem[]) {
-		{"Frontend", "MinUI (" BUILD_DATE " " BUILD_HASH ")",.on_confirm=OptionFrontend_openMenu},
-		{"Emulator",.on_confirm=OptionEmulator_openMenu},
-		{"Controls",.on_confirm=OptionControls_openMenu},
-		{"Shortcuts",.on_confirm=OptionShortcuts_openMenu}, 
-		{"Save Changes",.on_confirm=OptionSaveChanges_openMenu},
+		{"前端", "MinUI (" BUILD_DATE " " BUILD_HASH ")",.on_confirm=OptionFrontend_openMenu},
+		{"模拟器",.on_confirm=OptionEmulator_openMenu},
+		{"控制",.on_confirm=OptionControls_openMenu},
+		{"快捷键",.on_confirm=OptionShortcuts_openMenu},
+		{"保存更改",.on_confirm=OptionSaveChanges_openMenu},
 		{NULL},
 		{NULL},
 		{NULL},
@@ -4266,7 +4266,7 @@ static void Menu_loop(void) {
 	char disc_name[16];
 	if (menu.total_discs) {
 		rom_disc = menu.disc;
-		sprintf(disc_name, "Disc %i", menu.disc+1);
+		sprintf(disc_name, "碟片 %i", menu.disc+1);
 	}
 		
 	int selected = 0; // resets every launch
@@ -4301,7 +4301,7 @@ static void Menu_loop(void) {
 				menu.disc -= 1;
 				if (menu.disc<0) menu.disc += menu.total_discs;
 				dirty = 1;
-				sprintf(disc_name, "Disc %i", menu.disc+1);
+				sprintf(disc_name, "碟片 %i", menu.disc+1);
 			}
 			else if (selected==ITEM_SAVE || selected==ITEM_LOAD) {
 				menu.slot -= 1;
@@ -4314,7 +4314,7 @@ static void Menu_loop(void) {
 				menu.disc += 1;
 				if (menu.disc==menu.total_discs) menu.disc -= menu.total_discs;
 				dirty = 1;
-				sprintf(disc_name, "Disc %i", menu.disc+1);
+				sprintf(disc_name, "碟片 %i", menu.disc+1);
 			}
 			else if (selected==ITEM_SAVE || selected==ITEM_LOAD) {
 				menu.slot += 1;
@@ -4426,8 +4426,8 @@ static void Menu_loop(void) {
 			SDL_FreeSurface(text);
 			
 			if (show_setting && !GetHDMI()) GFX_blitHardwareHints(screen, show_setting);
-			else GFX_blitButtonGroup((char*[]){ BTN_SLEEP==BTN_POWER?"POWER":"MENU","SLEEP", NULL }, 0, screen, 0);
-			GFX_blitButtonGroup((char*[]){ "B","BACK", "A","OKAY", NULL }, 1, screen, 1);
+			else GFX_blitButtonGroup((char*[]){ BTN_SLEEP==BTN_POWER?"POWER":"MENU","休眠", NULL }, 0, screen, 0);
+			GFX_blitButtonGroup((char*[]){ "B","返回", "A","确定", NULL }, 1, screen, 1);
 			
 			// list
 			oy = (((DEVICE_HEIGHT / FIXED_SCALE) - PADDING * 2) - (MENU_ITEM_COUNT * PILL_SIZE)) / 2;
@@ -4516,8 +4516,8 @@ static void Menu_loop(void) {
 				else {
 					SDL_Rect preview_rect = {ox,oy,hw,hh};
 					SDL_FillRect(screen, &preview_rect, 0);
-					if (menu.save_exists) GFX_blitMessage(font.large, "No Preview", screen, &preview_rect);
-					else GFX_blitMessage(font.large, "Empty Slot", screen, &preview_rect);
+					if (menu.save_exists) GFX_blitMessage(font.large, "无预览", screen, &preview_rect);
+					else GFX_blitMessage(font.large, "空存档位", screen, &preview_rect);
 				}
 				
 				// pagination

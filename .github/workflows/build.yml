@@ -1,0 +1,118 @@
+name: Build MinUI
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Cache toolchains
+        uses: actions/cache@v4
+        with:
+          path: toolchains
+          key: toolchains-${{ hashFiles('makefile.toolchain') }}
+          restore-keys: toolchains-
+
+      - name: Build all platforms
+        run: make ci-all
+
+      - name: Upload base artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: minui-base
+          path: releases/*-base.zip
+          retention-days: 90
+
+      - name: Upload extras artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: minui-extras
+          path: releases/*-extras.zip
+          retention-days: 90
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Download base artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: minui-base
+          path: releases
+
+      - name: Download extras artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: minui-extras
+          path: releases
+
+      - name: Determine release name
+        id: release
+        run: |
+          HASH=$(git rev-parse --short HEAD)
+          DATE=$(TZ=GMT date +%Y%m%d)
+          BASE="MinUI-${DATE}"
+          DOT=$(ls releases/${BASE}-*-base.zip 2>/dev/null | wc -l | tr -d ' ')
+          if [ "$DOT" = "0" ]; then DOT=0; fi
+          NAME="${BASE}-${DOT}"
+          echo "name=${NAME}" >> "$GITHUB_OUTPUT"
+          echo "hash=${HASH}" >> "$GITHUB_OUTPUT"
+          TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "")
+          if [ -n "$TAG" ]; then
+            CHANGES=$(git log "${TAG}..HEAD" --pretty=format:"- %s (%h)" --no-merges)
+          else
+            CHANGES=$(git log --pretty=format:"- %s (%h)" --no-merges -20)
+          fi
+          {
+            echo "changelog<<EOF"
+            echo "$CHANGES"
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Create release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.release.outputs.name }}
+          name: ${{ steps.release.outputs.name }}
+          body: |
+            ## MinUI ${{ steps.release.outputs.name }}
+
+            Build: `${{ steps.release.outputs.hash }}`
+
+            ### Changes
+            ${{ steps.release.outputs.changelog }}
+
+            ### Downloads
+            - **base.zip** — MinUI.zip + bootstrap files + Roms/Bios/Saves templates
+            - **extras.zip** — Extra emulator paks, tools, and platform-specific files
+          files: |
+            releases/*-base.zip
+            releases/*-extras.zip
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

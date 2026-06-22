@@ -1,26 +1,26 @@
-MinUI is a minimal launcher for the RGB30, Trimui Smart (and Pro), Miyoo Mini (and Plus), M17, and RG35XX--all from the same SD card. Why? Why not?
+MinUI 是一个极简启动器，支持 RGB30、Trimui Smart（及 Pro）、Miyoo Mini（及 Plus）、M17 和 RG35XX——全部来自同一张 SD 卡。为什么？何乐而不为呢？
 
-Source:
+源码：
 https://github.com/shauninman/minui
 
 ----------------------------------------
-Installing
+安装
 
-PREFACE
+前言
 
-On devices that support two SD cards (eg. RG35XX) I will use the name "TF1" to refer to the card that goes into slot one of the device. All other instances of "SD card" or "primary card" refer to the card that goes into the second slot or to the sole SD card of devices that only support a single card. To get the most out of MinUI on devices that support two SD cards you should install MinUI on the second card.
+在支持双 SD 卡的设备上（如 RG35XX），我将使用 "TF1" 来指代插入设备第一个插槽的卡。所有其他提到的 "SD 卡" 或 "主卡" 指的是插入第二个插槽的卡，或仅支持单卡设备的唯一 SD 卡。为了在支持双 SD 卡的设备上获得最佳体验，你应该将 MinUI 安装在第二张卡上。
 
-Copy all the folders from this zip file to the root of your primary card.
-
-----------------------------------------
-Updating
-
-This extras zip file is included with every release, regardless of whether its contents has changed or not. Refer to the release notes to see what, if anything, was added or changed and copy just the desired updated pak(s) to the corresponding device folder in the Emus or Tools folders (eg. /Emus/tg5040 or /Tools/rgb30)
+将此 zip 文件中的所有文件夹复制到主卡的根目录。
 
 ----------------------------------------
-Bios files
+更新
 
-You'll need to BYOB for the emulator paks included in this zip file.
+此扩展 zip 文件随每个版本发布，无论其内容是否更改。请参阅发布说明以查看添加或更改了哪些内容，并将所需的更新 pak 复制到 Emus 或 Tools 文件夹中的相应设备文件夹中（例如 /Emus/tg5040 或 /Tools/rgb30）。
+
+----------------------------------------
+BIOS 文件
+
+你需要为此 zip 文件中包含的模拟器 pak 自带 BIOS。
 
 MGBA: gba_bios.bin
  PCE: syscard3.pce
@@ -28,39 +28,39 @@ MGBA: gba_bios.bin
  SGB: sgb.bios
 
 ----------------------------------------
-Native PICO-8 and Splore.pak (RGB30-only)
+原生 PICO-8 和 Splore.pak（仅限 RGB30）
 
-Download the official PICO-8 fantasy console for the Raspberry Pi from https://lexaloffle.itch.io/pico-8 (If you've bought a bundle on itch.io any time in the last few years you might already have a copy in your library https://itch.io/my-collections) At the time of writing, the file is named "pico-8_0.2.5g_raspi.zip". Copy that zip file into "/Tools/rgb30/Splore.pak/". Copy "/Emus/rgb30/P8-NATIVE.pak", "/Tools/rgb30/Splore.pak", and "/Tools/rgb30/Wi-Fi.pak" to your SD card. (You need the Wi-Fi.pak to download PICO-8 games in Splore.pak.)
+从 https://lexaloffle.itch.io/pico-8 下载适用于 Raspberry Pi 的官方 PICO-8 幻想主机（如果你在过去几年中在 itch.io 上购买过捆绑包，你可能已经在库中有了副本 https://itch.io/my-collections）。在撰写本文时，文件名为 "pico-8_0.2.5g_raspi.zip"。将该 zip 文件复制到 "/Tools/rgb30/Splore.pak/" 中。将 "/Emus/rgb30/P8-NATIVE.pak"、"/Tools/rgb30/Splore.pak" 和 "/Tools/rgb30/Wi-Fi.pak" 复制到你的 SD 卡。（你需要 Wi-Fi.pak 来在 Splore.pak 中下载 PICO-8 游戏。）
 
-Place carts you would like to play with native PICO-8 in "/Roms/Pico-8 (P8-NATIVE)/".
+将你想用原生 PICO-8 玩的卡带放在 "/Roms/Pico-8 (P8-NATIVE)/" 中。
 
-To exit P8-NATIVE.pak, press start. Then select "SHUTDOWN".
+要退出 P8-NATIVE.pak，按 start。然后选择 "SHUTDOWN"。
 
-To exit Splore.pak, press start. In-game select "EXIT TO SPLORE". With a cart selected in splore press start, select "OPTIONS", and then "SHUTDOWN PICO-8". 
+要退出 Splore.pak，按 start。在游戏中选择 "EXIT TO SPLORE"。在 splore 中选中一个卡带后按 start，选择 "OPTIONS"，然后选择 "SHUTDOWN PICO-8"。
 
-Please note that Splore.pak and P8-NATIVE.pak don't/can't implement MinUI's uniform features like the in-game menu (including save states), faux sleep, and quicksave/auto-resume.
+请注意，Splore.pak 和 P8-NATIVE.pak 没有/无法实现 MinUI 的统一功能，如游戏内菜单（包括存档状态）、模拟休眠和快速存档/自动恢复。
 
 ----------------------------------------
-Wi-Fi.pak (RGB30-only)
+Wi-Fi.pak（仅限 RGB30）
 
-Open "wifi.txt" in a plain text editor and enter your network name and password on two separate lines and save, eg.
+在纯文本编辑器中打开 "wifi.txt"，在两行中分别输入你的网络名称和密码并保存，例如：
 
   minui
   lessismore
 
-Copy "Wi-Fi.pak" to "/Tools/rgb30/" on your SD card. The first time you open the pak (or any time you change the contents of "wifi.txt") it will update the network name and password then connect. Subsequent launches will toggle wi-fi on and off. Wi-fi will drain the battery so it's best to only enable it when you plan to use it and disable it when you're done. Your Wi-fi state persists across reboots.
+将 "Wi-Fi.pak" 复制到 SD 卡上的 "/Tools/rgb30/"。第一次打开 pak（或每次更改 "wifi.txt" 内容时）将更新网络名称和密码然后连接。后续启动将切换 Wi-Fi 开关。Wi-Fi 会消耗电池，因此最好仅在计划使用时启用，使用完毕后禁用。你的 Wi-Fi 状态在重启后保持。
 
 ----------------------------------------
-Remove Loading.pak (Miyoo A30)
+Remove Loading.pak（Miyoo A30）
 
-This pak removes the "LOADING" text that appears between the boot logo and the main interface when powering on. It requires patching nand memory to modify the otherwise read-only root file system. It takes around 5 minutes to complete. While not required it is a very good idea to be connected to power while performing this operation. Please be patient and do not power off the device before it completes.
-
-----------------------------------------
-Remove Loading.pak (Trimui Smart Pro and Brick)
-
-This pak removes the "LOADING" text that appears between the boot logo and the main interface when powering on. Compared to the A-30 this is a minimally invasive procedure. Nothing to worry about.
+此 pak 移除开机时出现在启动徽标和主界面之间的 "LOADING" 文本。它需要修补 NAND 内存以修改原本只读的根文件系统。完成大约需要 5 分钟。虽然不是必需的，但在执行此操作时连接电源是非常好的主意。请耐心等待，在完成之前不要关闭设备。
 
 ----------------------------------------
-Swap Menu.pak (RG34XX)
+Remove Loading.pak（Trimui Smart Pro 和 Brick）
 
-This pak swaps the MENU and SELECT button at a system level to make MENU more accessible. Launch the pak then reboot. Relaunch the pak and reboot to undo the change.
+此 pak 移除开机时出现在启动徽标和主界面之间的 "LOADING" 文本。与 A-30 相比，这是一个微创操作。不用担心。
+
+----------------------------------------
+Swap Menu.pak（RG34XX）
+
+此 pak 在系统级别交换 MENU 和 SELECT 按钮，使 MENU 更容易访问。启动 pak 然后重启。重新启动 pak 并重启以撤销更改。

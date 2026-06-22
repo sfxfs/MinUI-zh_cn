@@ -1,47 +1,42 @@
 # MinUI
 
-MinUI is a focused, custom launcher and libretro frontend for [a variety of retro handhelds](#supported-devices).
+MinUI 是一个专注的自定义启动器和 libretro 前端，支持[多种复古掌机](#支持设备)。
 
 <img src="github/minui-main.png" width=320 /> <img src="github/minui-menu-gbc.png" width=320 /> 
 
-## Features
+## 功能特点
 
-- Simple launcher, simple SD card
-- No settings or configuration
-- No boxart, themes, or distractions
-- Automatically hides hidden files
-  and extension and region/version 
-  cruft in display names
-- Consistent in-emulator menu with
-  quick access to save states, disc
-  changing, and emulator options
-- Automatically sleeps after 30 seconds 
-  or press POWER to sleep (and wake)
-- Automatically powers off while asleep
-  after two minutes or hold POWER for
-  one second
-- Automatically resumes right where
-  you left off if powered off while
-  in-game, manually or while asleep
-- Resume from manually created, last 
-  used save state by pressing X in 
-  the launcher instead of A
-- Streamlined emulator frontend 
-  (minarch + libretro cores)
-- Single SD card compatible with
-  multiple devices from different
-  manufacturers
+- 简洁的启动器，简洁的 SD 卡
+- 无需设置或配置
+- 无封面、主题或干扰元素
+- 自动隐藏隐藏文件
+  以及显示名称中的扩展名和区域/版本信息
+- 统一的模拟器内菜单，
+  可快速访问存档状态、换碟
+  和模拟器选项
+- 30 秒后自动休眠，
+  或按 POWER 键休眠（和唤醒）
+- 休眠后两分钟自动关机，
+  或长按 POWER 键一秒关机
+- 如果在游戏中关机（手动或休眠），
+  自动恢复到离开时的状态
+- 在启动器中按 X 而非 A 
+  可从手动创建的最近存档状态恢复
+- 精简的模拟器前端
+  （minarch + libretro 核心）
+- 单张 SD 卡兼容来自不同
+  制造商的多款设备
 
-You can [grab the latest version here](https://github.com/shauninman/MinUI/releases).
+你可以[在这里获取最新版本](https://github.com/shauninman/MinUI/releases)。
 
-> Devices with a physical power switch
-> use MENU to sleep and wake instead of
-> POWER. Once asleep the device can safely
-> be powered off manually with the switch.
+> 带有物理电源开关的设备
+> 使用 MENU 键代替 POWER 键
+> 进行休眠和唤醒。休眠后可以
+> 安全地使用开关手动关机。
 
-## Supported consoles
+## 支持的主机
 
-Base:
+基础：
 
 - Game Boy
 - Game Boy Color
@@ -51,60 +46,60 @@ Base:
 - Sega Genesis
 - PlayStation
 
-Extras:
+扩展：
 
-- Neo Geo Pocket (and Color)
+- Neo Geo Pocket（及 Color）
 - Pico-8
-- Pokémon mini
+- Pokémon mini
 - Sega Game Gear
 - Sega Master System
 - Super Game Boy
-- TurboGrafx-16 (and TurboGrafx-CD)
+- TurboGrafx-16（及 TurboGrafx-CD）
 - Virtual Boy
 
-## Supported Devices
+## 支持设备
 
-| Device | Added | Status |
+| 设备 | 添加版本 | 状态 |
 | -- | -- | -- |
-| Anbernic RG28xx | MinUI-20240429b-2 | Legacy |
-| Anbernic RG34xx | MinUI-20241227-0 | Legacy |
-| Anbernic RG34xxSP | MinUI-20250920-0 | Legacy |
-| Anbernic RG35xx | MinUI-20230922b-2 | Legacy |
-| Anbernic RG35xx Plus | MinUI-20240106b-0 | Legacy |
-| Anbernic RG35xxH | MinUI-20240120b-1 | Legacy |
-| Anbernic RG35xxSP | MinUI-20240525-0 | Legacy |
-| Anbernic RG40xxH | MinUI-20240717-1 | Legacy |
-| Anbernic RG40xxV | MinUI-20240831-0 | Legacy | 
-| Anbernic RG CubeXX | MinUI-202401028-0 | Legacy | 
-| GKD Pixel | MinUI-20240120b-1 | Legacy |
-| M17 | MinUI-20231126b-2 | Legacy |
-| MagicX XU Mini M | MinUI-20240831-0 | Legacy | 
-| MagicX Mini Zero 28 | MinUI-20250111-0 | Legacy |
-| Miyoo A30 | MinUI-20240705-0 | Legacy |
-| Miyoo Flip | MinUI-20250111-0 | Legacy |
-| Miyoo Mini | MinUI-20230922b-2 | Legacy |
-| Miyoo Mini Flip | MinUI-20251023-0 | Legacy |
-| Miyoo Mini Plus | MinUI-20230922b-2 | Legacy |
-| Powkiddy RGB30 | MinUI-20231014b-1 | Legacy |
-| Trimui Brick | MinUI-20241028-0 | Legacy |
-| Trimui Smart | MinUI-20230922b-2 | Legacy |
-| Trimui Smart Pro | MinUI-20231111b-2 | Legacy |
+| Anbernic RG28xx | MinUI-20240429b-2 | 旧版 |
+| Anbernic RG34xx | MinUI-20241227-0 | 旧版 |
+| Anbernic RG34xxSP | MinUI-20250920-0 | 旧版 |
+| Anbernic RG35xx | MinUI-20230922b-2 | 旧版 |
+| Anbernic RG35xx Plus | MinUI-20240106b-0 | 旧版 |
+| Anbernic RG35xxH | MinUI-20240120b-1 | 旧版 |
+| Anbernic RG35xxSP | MinUI-20240525-0 | 旧版 |
+| Anbernic RG40xxH | MinUI-20240717-1 | 旧版 |
+| Anbernic RG40xxV | MinUI-20240831-0 | 旧版 | 
+| Anbernic RG CubeXX | MinUI-202401028-0 | 旧版 | 
+| GKD Pixel | MinUI-20240120b-1 | 旧版 |
+| M17 | MinUI-20231126b-2 | 旧版 |
+| MagicX XU Mini M | MinUI-20240831-0 | 旧版 | 
+| MagicX Mini Zero 28 | MinUI-20250111-0 | 旧版 |
+| Miyoo A30 | MinUI-20240705-0 | 旧版 |
+| Miyoo Flip | MinUI-20250111-0 | 旧版 |
+| Miyoo Mini | MinUI-20230922b-2 | 旧版 |
+| Miyoo Mini Flip | MinUI-20251023-0 | 旧版 |
+| Miyoo Mini Plus | MinUI-20230922b-2 | 旧版 |
+| Powkiddy RGB30 | MinUI-20231014b-1 | 旧版 |
+| Trimui Brick | MinUI-20241028-0 | 旧版 |
+| Trimui Smart | MinUI-20230922b-2 | 旧版 |
+| Trimui Smart Pro | MinUI-20231111b-2 | 旧版 |
 
 > [!NOTE]
-> **Active** actively working on compatibility and improvements specific to this device  
-> **Maintained** inheriting improvements to common functionality  
-> **Legacy** will be retired in a future update  
-> **Retired** removed from repo, no longer updated or packaged with new releases
+> **活跃** — 正在积极为此设备进行兼容性和改进工作  
+> **维护** — 继承通用功能的改进  
+> **旧版** — 将在未来更新中停用  
+> **已停用** — 已从仓库中移除，不再更新或打包到新版本中
 
-## Legacy versions
+## 旧版存档
 
-The original Trimui Model S version of MinUI (2021/04/03-2021/08/06) has been archived [here](https://github.com/shauninman/MinUI-Legacy-Trimui-Model-S).
+最初的 Trimui Model S 版本的 MinUI（2021/04/03-2021/08/06）已存档于[此处](https://github.com/shauninman/MinUI-Legacy-Trimui-Model-S)。
 
-The sequel, MiniUI for the Miyoo Mini (2022/04/20-2022/10/23), has been archived [here](https://github.com/shauninman/MiniUI-Legacy-Miyoo-Mini).
+后续的 MiniUI for Miyoo Mini（2022/04/20-2022/10/23）已存档于[此处](https://github.com/shauninman/MiniUI-Legacy-Miyoo-Mini)。
 
-The return of MinUI for the original Anbernic RG35XX (2023/02/26-2023/03/26) has been archived [here](https://github.com/shauninman/MinUI-Legacy-RG35XX).
+MinUI 回归最初的 Anbernic RG35XX（2023/02/26-2023/03/26）已存档于[此处](https://github.com/shauninman/MinUI-Legacy-RG35XX)。
 
-The current MinUI which introduced support for multiple devices starting with the Trimui Smart, Miyoo Mini (and Plus), and the original Anbernic RG35XX was released on [2023/09/22][init-release] with the initial functional commit 6 months earlier on [2023/03/27][init-commit].
+当前版本的 MinUI 从 Trimui Smart、Miyoo Mini（及 Plus）和最初的 Anbernic RG35XX 开始引入了多设备支持，发布于 [2023/09/22][init-release]，初始功能提交则在 6 个月前的 [2023/03/27][init-commit]。
 
 [init-release]:https://github.com/shauninman/MinUI/releases/tag/v20230922b-2
 [init-commit]:https://github.com/shauninman/MinUI/commit/53e0296ea5a2794290fb5783765af6cee0063445#diff-b993e61ab6e66a19b67c88cfb98261aa9267d250de8bb56463662f67aae1a558

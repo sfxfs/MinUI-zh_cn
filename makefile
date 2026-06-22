@@ -111,6 +111,37 @@ setup: name
 done:
 	say "done" 2>/dev/null || true
 
+# CI target: same as all but without tty check and with auto-formatted readmes
+ci-setup: name
+	rm -rf ./build
+	mkdir -p ./releases
+	cp -R ./skeleton ./build
+	cd ./build && find . -type f -name '.keep' -delete
+	cd ./build && find . -type f -name '*.meta' -delete
+	echo $(BUILD_HASH) > ./workspace/hash.txt
+	mkdir -p ./workspace/readmes
+	cp ./skeleton/BASE/README.txt ./workspace/readmes/BASE-out.txt
+	cp ./skeleton/EXTRAS/README.txt ./workspace/readmes/EXTRAS-out.txt
+
+ci-package: tidy
+	cp ./workspace/readmes/BASE-out.txt ./build/BASE/README.txt
+	cp ./workspace/readmes/EXTRAS-out.txt ./build/EXTRAS/README.txt
+	rm -rf ./workspace/readmes
+	cd ./build/SYSTEM && echo "$(RELEASE_NAME)\n$(BUILD_HASH)" > version.txt
+	./commits.sh > ./build/SYSTEM/commits.txt
+	cd ./build && find . -type f -name '.DS_Store' -delete
+	mkdir -p ./build/PAYLOAD
+	mv ./build/SYSTEM ./build/PAYLOAD/.system
+	cp -R ./build/BOOT/.tmp_update ./build/PAYLOAD/
+	cd ./build/PAYLOAD && zip -r MinUI.zip .system .tmp_update
+	mv ./build/PAYLOAD/MinUI.zip ./build/BASE
+	cd ./build/BASE && zip -r ../../releases/$(RELEASE_NAME)-base.zip Bios Roms Saves miyoo miyoo354 trimui rg35xx rg35xxplus gkdpixel miyoo355 magicx miyoo285 em_ui.sh MinUI.zip README.txt
+	cd ./build/EXTRAS && zip -r ../../releases/$(RELEASE_NAME)-extras.zip Bios Emus Roms Saves Tools README.txt
+	echo "$(RELEASE_NAME)" > ./build/latest.txt
+
+ci-all: ci-setup $(PLATFORMS) special ci-package
+
+
 special:
 	# setup miyoomini/trimui/magicx family .tmp_update in BOOT
 	mv ./build/BOOT/common ./build/BOOT/.tmp_update
