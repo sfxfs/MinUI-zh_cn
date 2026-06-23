@@ -1,0 +1,13 @@
+diff --git a/platform/libretro/libretro.cpp b/platform/libretro/libretro.cpp
+index 0000000..0000000 100644
+--- a/platform/libretro/libretro.cpp
++++ b/platform/libretro/libretro.cpp
+@@ -768,7 +768,7 @@ bool retro_load_game(const struct retro_game_info *info)
+     else {
+         _vm->QueueCartChange(info->path);
+     }
+-	_vm->UpdateAndDraw();
++	_vm->Step();
+ 
+     return true;
+ }
